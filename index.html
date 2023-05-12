@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"
+    />
+    <title>Arıza ve Bakım Onarım Bildirimi</title>
+    <meta content="Admin Dashboard" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <link rel="shortcut icon" href="images/hacettepeFavIcon.png" />
+
+    <!-- Index Html -->
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
+    <!-- Font Awsome -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Toastr css -->
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
+    <!-- Index Js -->
+    <script type="module" src="index.js" async></script>
+  </head>
+
+  <body>
+    <!-- PreLoader -->
+    <div class="preloader">
+      <img
+        src="images/hacettepeFavIcon.png"
+        id="preloader-logo"
+        width="90"
+        height="90"
+      />
+    </div>
+
+    <input id="isTalebiKod" type="hidden" />
+
+    <div class="top-menu-div">
+      <div class="top-menu-div-part-1">
+        <img src="images/haccettepe.png" width="335px" height="55px" />
+      </div>
+      <div class="top-menu-div-part-2">
+        <h5 style="font-weight: 500">Beytepe Kampüsü</h5>
+        <h4>Arıza ve Bakım Onarım Bildirimi</h4>
+      </div>
+      <div class="top-menu-div-part-3">
+        <div class="date-div" style="margin-right: 10px">
+          <i class="fa-solid fa-calendar-days" style="margin-right: 6px"></i>
+          <p id="date"></p>
+        </div>
+        <div class="time-div">
+          <i class="fa-solid fa-clock" style="margin-right: 6px"></i>
+          <p id="time"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-div">
+      <div class="form-container">
+        <form>
+          <div class="form-container-part-1">
+            <div class="talep-eden-lokasyon">
+              <div class="inputbox" style="width: 100%">
+                <input
+                  type="text"
+                  id="talepEden"
+                  required="required"
+                  autocomplete="off"
+                />
+                <span>Talep Eden</span>
+              </div>
+              <div class="inputbox" style="width: 100%">
+                <input type="text" id="lokasyon" required="required" />
+                <span>Lokasyon</span>
+              </div>
+            </div>
+            <div class="tel-email">
+              <div class="inputbox" style="width: 100%">
+                <input type="text" id="tel" required="required" />
+                <span>Telefon No</span>
+              </div>
+              <div class="inputbox" style="width: 100%">
+                <input type="text" id="email" required="required" />
+                <span>Email</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-container-part-2">
+            <div class="inputbox" style="width: 100%">
+              <input type="text" id="konu" required="required" />
+              <span>Konu</span>
+            </div>
+            <div class="inputbox" style="width: 100%">
+              <textarea
+                type="text"
+                id="aciklama"
+                required="required"
+                ,
+                rows="5"
+                style="resize: none"
+              ></textarea>
+              <span>Açıklama</span>
+            </div>
+          </div>
+          <div class="form-container-buttons">
+            <button type="submit" id="ekle" style="margin-right: 10px">
+              Gönder
+            </button>
+            <button type="reset" id="iptalEt">İptal Et</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-div">
+      <p style="text-align: center">
+        Hacettepe Üniversitesi Yapı İşleri ve Teknik Daire Başkanlığı 06100
+        Sıhhye / ANKARA<br />
+        <strong>Telefon :</strong> +90 (312) 305 10 50 (pbx)
+        <strong>Faks :</strong> +90 (312) 311 37 72<br />
+        <strong>E-posta :</strong>
+        <a href="mailto:yapi@hacettepe.edu.tr">yapi@hacettepe.edu.tr</a><br />
+        <a href="http://www.yapi.hacettepe.edu.tr/sorumluluksiniri.shtml"
+          ><span style="color: black">Sorumluluk Sınırı</span></a
+        ><a href="http://www.yapi.hacettepe.edu.tr/links.shtml">.</a>
+      </p>
+    </div>
+
+    <!-- JQUERY -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+      asyncs
+    ></script>
+
+    <!-- Toastr JS -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
+      async
+    ></script>
+  </body>
+</html>

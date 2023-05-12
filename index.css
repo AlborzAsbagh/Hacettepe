@@ -1,0 +1,265 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-menu-div{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.top-menu-div-part-1{
+    width: 30%;
+    height: max-content;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-menu-div-part-2{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+.top-menu-div-part-3{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.body-div {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.form-container {
+    width: 50%;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.form-container-part-1{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.talep-eden-lokasyon {
+    width: 48%;
+}
+.tel-email {
+    width: 48%;
+}
+.form-container-part-2{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+}
+.form-container-buttons{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end
+}
+.footer-div {
+    width: 100%;
+    height: max-content;
+    font-size: 15px;
+    padding:20px 0;
+    line-height: 22px;
+    background-color: rgba(0,0,0,.02);
+    border-top: 1px solid rgba(0,0,0,.2);
+    color: #000;
+}
+a {
+    text-decoration: none;
+}
+.date-div{
+    display: flex;
+    flex-direction: row;
+}
+.time-div {
+    display: flex;
+    flex-direction: row;
+}
+#ekle {
+    margin-right: 10px;
+    color:white;
+    background-color: rgb(18, 163, 18);
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+    border: none;
+}
+#ekle:hover {
+    cursor: pointer;
+    background-color: green;
+}
+#iptalEt {
+    color:white;
+    background-color: rgb(167, 18, 18);
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+    border: none;
+}
+#iptalEt:hover {
+    cursor: pointer;
+    background-color: darkred;
+}
+
+/* Inputs ----------------------------------------------------------- */
+.form-container .inputbox {
+    position: relative;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  .form-container .inputbox input,textarea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid lightgray;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: 0.1s;
+  }
+  .form-container .inputbox input:focus,textarea:focus {
+    border-color: rgb(99, 99, 224) ;
+  }
+  .form-container .inputbox span {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 14px;
+    transition: 0.6s;
+    opacity: 0.5;
+  }
+  .form-container .inputbox input:focus ~ span,
+  .form-container .inputbox input ~ span {
+    transform: translateX(-12px) translateY(-34px);
+    font-size: 14px;
+    color: rgb(103, 103, 133) ;
+  }
+  .form-container .inputbox textarea:focus ~ span,
+  .form-container .inputbox textarea ~ span {
+    transform: translateX(-12px) translateY(-34px);
+    font-size: 14px;
+    color: rgb(103, 103, 133) ;
+  }
+
+ /* input drop down list */
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    font-size: 14px;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+/* input drop down list */
+
+/* Preloader */
+.preloader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 10000;
+    overflow: hidden;
+}
+#preloader-logo {
+    position: absolute;
+    top:45%;
+    left: 46%;
+    animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Prelaoder */
+
+/* Responisve ----------------------------------------------------------- */
+
+@media only screen and (max-width:1000px)  {
+    .top-menu-div-part-1 {
+        width: 100%;
+    }
+    .top-menu-div-part-2 {display: none;}
+    .top-menu-div-part-3 {display: none;}
+    .body-div {
+        height: max-content;
+        padding: 10px 0;
+    }
+    .form-container {
+        width: 80%;
+    }
+    .form-container-part-1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .talep-eden-lokasyon {width: 100%;}
+    .tel-email {width: 100%;}
+}
+  
