@@ -54,7 +54,7 @@ body {
 }
 .form-container {
     width: 50%;
-    padding: 25px;
+    padding: 35px;
     border-radius: 8px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
@@ -189,9 +189,15 @@ a {
     border-top: none;
     font-size: 14px;
     z-index: 99;
-    top: 100%;
+    top: 80%;
     left: 0;
     right: 0;
+}
+
+#kullaniciLokasyonautocomplete-list {
+    top: 58% !important;
+    border: unset !important;
+    border-bottom: 1px solid #d4d4d4;
 }
 
 .autocomplete-items div {
@@ -201,6 +207,10 @@ a {
     border-bottom: 1px solid #d4d4d4;
 }
 
+.autocomplete-items div:first-of-type {
+    border-top: 1px solid #d4d4d4;
+}
+
 .autocomplete-items div:hover {
     background-color: #e9e9e9;
 }
@@ -208,6 +218,13 @@ a {
 .autocomplete-active {
     background-color: DodgerBlue !important;
     color: #ffffff;
+}
+.add-new-user {
+    background-color: green;
+    color: white;
+    padding: 5px;
+    width: 100%;
+    border-radius: 10px;
 }
 /* input drop down list */
 

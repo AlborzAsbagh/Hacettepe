@@ -14,6 +14,7 @@
 
     <!-- Index Html -->
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="Modal.css" />
 
     <!-- Font Awsome -->
     <link
@@ -26,8 +27,6 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     />
-    <!-- Index Js -->
-    <script type="module" src="index.js" async></script>
   </head>
 
   <body>
@@ -134,6 +133,38 @@
       </p>
     </div>
 
+    <!-- Modal -->
+
+    <section class="modal hidden">
+      <div class="flex">
+        <img
+          src="images/haccettepe.png"
+          width="250px"
+          height="50px"
+          alt="user"
+          style="margin-bottom: 20px"
+        />
+        <button class="btn-close">⨉</button>
+      </div>
+      <div>
+        <h3>Yeni Kullanıcı Ekle</h3>
+      </div>
+      <form class="modal-form">
+        <input type="text" id="kullaniciAdi" placeholder="Kullanıcı Adı" />
+        <input
+          type="text"
+          id="kullaniciLokasyon"
+          placeholder="Lokasyon"
+          autocomplete="off"
+        />
+        <input type="number" id="kullaniciTel" placeholder="Telefon Numarası" />
+        <input type="email" id="kullaniciMail" placeholder="Email Hesabı" />
+        <button type="button" class="btn" id="kullaniciEkle">Ekle</button>
+      </form>
+    </section>
+
+    <div class="overlay hidden"></div>
+
     <!-- JQUERY -->
     <script
       src="https://code.jquery.com/jquery-3.6.4.min.js"
@@ -141,7 +172,9 @@
       crossorigin="anonymous"
       asyncs
     ></script>
-
+    <script type="module" src="Modal.js" async></script>
+    <!-- Index Js -->
+    <script type="module" src="index.js" async></script>
     <!-- Toastr JS -->
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
