@@ -15,18 +15,8 @@
     <!-- Index Html -->
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" type="text/css" href="Modal.css" />
-
-    <!-- Font Awsome -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <!-- Toastr css -->
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-    />
+    <link rel="stylesheet" href="CssLibraries/toastr.css" />
   </head>
 
   <body>
@@ -52,11 +42,21 @@
       </div>
       <div class="top-menu-div-part-3">
         <div class="date-div" style="margin-right: 10px">
-          <i class="fa-solid fa-calendar-days" style="margin-right: 6px"></i>
+          <img
+            src="images/calendar.png"
+            style="margin-right: 6px; margin-top: 2px"
+            width="15px"
+            height="15px"
+          />
           <p id="date"></p>
         </div>
         <div class="time-div">
-          <i class="fa-solid fa-clock" style="margin-right: 6px"></i>
+          <img
+            src="images/clock.png"
+            style="margin-right: 6px; margin-top: 2px"
+            width="15px"
+            height="15px"
+          />
           <p id="time"></p>
         </div>
       </div>
@@ -166,21 +166,13 @@
     <div class="overlay hidden"></div>
 
     <!-- JQUERY -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-      asyncs
-    ></script>
-    <script type="module" src="Modal.js" async></script>
+    <script src="JsLibraries/Jquery.js" asyncs></script>
+    <script src="Modal.js" async></script>
     <!-- Index Js -->
     <script type="module" src="index.js" async></script>
     <!-- Toastr JS -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"
-      async
-    ></script>
+    <script src="JsLibraries/toastr.js"></script>
+    <script src="JsLibraries/googleApis.js" async></script>
   </body>
 </html>

@@ -96,7 +96,7 @@ function autocomplete(inp, arr) {
 function getLokasyonlar() {
   $.ajax({
     type: "GET",
-    url: "http://192.168.1.68:45477/api/getLokasyonlar",
+    url: "http://192.168.1.89:45479/api/getLokasyonlar",
     headers: {
       Authorization: "Basic T1JKSU46",
       "Accept-language": "en,tr,ru",
@@ -181,7 +181,7 @@ function addNewUser(
 
     $.ajax({
       type: "post",
-      url: `http://192.168.1.68:45477/api/YeniKullaniciEkle?${queryString}`,
+      url: `http://192.168.1.89:45479/api/YeniKullaniciEkle?${queryString}`,
       data: {
         kullaniciAdi: kullaniciAdi,
         kullaniciTel: kullaniciTel,
