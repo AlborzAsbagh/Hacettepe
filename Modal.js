@@ -53,33 +53,7 @@ function autocomplete(inp, arr) {
       }
     }
   });
-  inp.addEventListener("keydown", function (e) {
-    var x = document.getElementById(this.id + "autocomplete-list");
-    if (x) x = x.getElementsByTagName("div");
-    if (e.keyCode === 40) {
-      addActive(x);
-    } else if (e.keyCode === 38) {
-      currentFocus--;
-      addActive(x);
-    } else if (e.keyCode === 13) {
-      e.preventDefault();
-      if (currentFocus > -1) {
-        if (x) x[currentFocus].click();
-      }
-    }
-  });
-  function addActive(x) {
-    if (!x) return false;
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = x.length - 1;
-    x[currentFocus].classList.add("autocomplete-active");
-  }
-  function removeActive(x) {
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
-    }
-  }
+
   function closeAllLists(elmnt) {
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
@@ -96,7 +70,7 @@ function autocomplete(inp, arr) {
 function getLokasyonlar() {
   $.ajax({
     type: "GET",
-    url: "http://192.168.1.89:45479/api/getLokasyonlar",
+    url: "http://172.16.1.178:45455/api/getLokasyonlar",
     headers: {
       Authorization: "Basic T1JKSU46",
       "Accept-language": "en,tr,ru",
@@ -112,12 +86,12 @@ function getLokasyonlar() {
         }
       } else {
         toastr.options.positionClass = "toast-bottom-left";
-        toastr.error("Her hagi bir bölge bilgisi yok.");
+        toastr.error("Her hagi bir lokasyon bilgisi yok.");
       }
     })
     .fail(function (response) {
       toastr.options.positionClass = "toast-bottom-left";
-      toastr.error("Bölge transfer esnasında hata oluştu.");
+      toastr.error("Lokasyon transfer esnasında hata oluştu.");
     });
 }
 getLokasyonlar();
@@ -146,7 +120,7 @@ $("#kullaniciEkle").on("click", function (event) {
     $("#kullaniciLokasyon").css("border-color", "");
   }
 
-  if (kullaniciTel == null || kullaniciTel.trim() === "") {
+  if (!validatePhoneNumber(kullaniciTel)) {
     isReadyToPost = false;
     $("#kullaniciTel").css("border-color", "red");
   } else {
@@ -157,7 +131,7 @@ $("#kullaniciEkle").on("click", function (event) {
     addNewUser(kullaniciAdi, kullaniciTel, kullaniciLokasyon, kullaniciMail);
   } else {
     toastr.options.positionClass = "toast-bottom-left";
-    toastr.error("Zorunlu Alanları doldurunuz.");
+    toastr.error("Girilen bilgiler boş yada geçersiz olabilir.");
   }
 });
 
@@ -169,7 +143,7 @@ function addNewUser(
 ) {
   if (!lokasyonlar.includes(kullaniciLokasyon)) {
     toastr.options.positionClass = "toast-bottom-left";
-    toastr.error("Girilen bölge geçersiz.");
+    toastr.error("Girilen lokasyon geçersiz.");
   } else {
     var queryString = `kullaniciAdi=${encodeURIComponent(
       kullaniciAdi
@@ -181,7 +155,7 @@ function addNewUser(
 
     $.ajax({
       type: "post",
-      url: `http://192.168.1.89:45479/api/YeniKullaniciEkle?${queryString}`,
+      url: `http://172.16.1.178:45455/api/YeniKullaniciEkle?${queryString}`,
       data: {
         kullaniciAdi: kullaniciAdi,
         kullaniciTel: kullaniciTel,
@@ -208,4 +182,13 @@ function addNewUser(
         toastr.error("Bağlantı hatası.");
       });
   }
+}
+
+function validatePhoneNumber(kullaniciTel) {
+  if (kullaniciTel.trim() === "") {
+    return false;
+  }
+
+  var numericPattern = /^\d+$/;
+  return numericPattern.test(kullaniciTel);
 }

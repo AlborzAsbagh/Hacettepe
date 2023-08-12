@@ -11,7 +11,7 @@ var aciklama = document.getElementById("aciklama");
 document.getElementById("lokasyon").readOnly = true;
 lokasyon.addEventListener("click", function (params) {
   toastr.options.positionClass = "toast-bottom-left";
-  toastr.error("Bölge girme yetkiniz yok");
+  toastr.error("Lokasyon girme yetkiniz yok");
 });
 
 var date = new Date();
@@ -58,7 +58,7 @@ var kullaniciListe = [];
 
 $.ajax({
   type: "get",
-  url: "http://192.168.1.89:45479/api/talepKullanici",
+  url: "http://172.16.1.178:45455/api/talepKullanici",
   headers: {
     Authorization: "Basic T1JKSU46",
     "Accept-language": "en,tr,ru",
@@ -107,7 +107,7 @@ $("#ekle").on("click", function () {
       talepEden === "" ||
       lokasyon === "" ||
       email === "" ||
-      tel === "" ||
+      !validatePhoneNumber(tel) ||
       konu === "" ||
       aciklama === ""
     )
@@ -118,11 +118,11 @@ $("#ekle").on("click", function () {
     if (talepEden === "") $("#talepEden").css("border-color", "red");
     if (konu === "") $("#konu").css("border-color", "red");
     if (aciklama === "") $("#aciklama").css("border-color", "red");
-    if (tel === "") $("#tel").css("border-color", "red");
+    if (!validatePhoneNumber(tel)) $("#tel").css("border-color", "red");
     if (email === "") $("#email").css("border-color", "red");
 
     toastr.options.positionClass = "toast-bottom-left";
-    toastr.error("Lütfen zorunlu alanları doldurunuz.");
+    toastr.error("Girilen bilgiler boş yada geçersiz olabilir.");
   } else {
     var user = kullaniciListe.find((item) => item.ISK_ISIM === talepEden);
     if (user) {
@@ -150,7 +150,7 @@ function getLokasyon(id) {
   var lokasyon = "";
   $.ajax({
     type: "get",
-    url: "http://192.168.1.89:45479/api/getLokasyonById",
+    url: "http://172.16.1.178:45455/api/getLokasyonById",
     data: { id: id },
     dataType: "json",
     headers: {
@@ -165,12 +165,12 @@ function getLokasyon(id) {
         $("#lokasyon").val(lokasyon);
       } else {
         toastr.options.positionClass = "toast-bottom-left";
-        toastr.error("Kullanıcıya ait bölge bulunamadı.");
+        toastr.error("Kullanıcıya ait lokasyon bulunamadı.");
       }
     })
     .fail(function () {
       toastr.options.positionClass = "toast-bottom-left";
-      toastr.error("Bölge transfer esnasında hata oluştu.");
+      toastr.error("Lokasyon transfer esnasında hata oluştu.");
     });
 }
 
@@ -218,25 +218,6 @@ function autocomplete(inp, arr) {
     a.appendChild(createButton());
   });
 
-  inp.addEventListener("keydown", function (e) {
-    $("#email").val("");
-    $("#tel").val("");
-    $("#lokasyon").val("");
-    var x = document.getElementById(this.id + "autocomplete-list");
-    if (x) x = x.getElementsByTagName("div");
-    if (e.keyCode === 40) {
-      addActive(x);
-    } else if (e.keyCode === 38) {
-      currentFocus--;
-      addActive(x);
-    } else if (e.keyCode === 13) {
-      e.preventDefault();
-      if (currentFocus > -1) {
-        if (x) x[currentFocus].click();
-      }
-    }
-  });
-
   function createButton() {
     var buttonDiv = document.createElement("DIV");
     buttonDiv.innerHTML = `<button class="add-new-user">Yeni Kullanıcı Ekle</button>`;
@@ -246,20 +227,6 @@ function autocomplete(inp, arr) {
       document.querySelector(".overlay").classList.remove("hidden");
     });
     return buttonDiv;
-  }
-
-  function addActive(x) {
-    if (!x) return false;
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = x.length - 1;
-    x[currentFocus].classList.add("autocomplete-active");
-  }
-
-  function removeActive(x) {
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
-    }
   }
 
   function closeAllLists(elmnt) {
@@ -284,7 +251,7 @@ function postIsTalebi(tanim, konu, telNo, mail, talepEdenId, lokasyonId) {
   $(".preloader").show();
   $.ajax({
     type: "get",
-    url: "http://192.168.1.89:45479/api/getIsTalebiKod",
+    url: "http://172.16.1.178:45455/api/getIsTalebiKod",
     data: { nmrkod: "IST_KOD" },
     headers: {
       Authorization: "Basic T1JKSU46",
@@ -314,7 +281,7 @@ function postIsTalebi(tanim, konu, telNo, mail, talepEdenId, lokasyonId) {
 
       $.ajax({
         type: "GET",
-        url: "http://192.168.1.89:45479/api/postIsTalebi",
+        url: "http://172.16.1.178:45455/api/postIsTalebi",
         data: {
           istKodNumber: numberInt,
           istKod: istKod,
@@ -376,4 +343,13 @@ function checkFields() {
   aciklama === ""
     ? $("#aciklama").css("border-color", "red")
     : $("#aciklama").css("border-color", "lightgray");
+}
+
+function validatePhoneNumber(tel) {
+  if (tel.trim() === "") {
+    return false;
+  }
+
+  var numericPattern = /^\d+$/;
+  return numericPattern.test(tel);
 }
