@@ -86,7 +86,7 @@ function getLokasyonlar() {
         }
       } else {
         toastr.options.positionClass = "toast-bottom-left";
-        toastr.error("Her hagi bir lokasyon bilgisi yok.");
+        toastr.error("Herhangi bir lokasyon bilgisi yok.");
       }
     })
     .fail(function (response) {
