@@ -70,7 +70,7 @@ function autocomplete(inp, arr) {
 function getLokasyonlar() {
   $.ajax({
     type: "GET",
-    url: "http://172.16.1.178:45455/api/getLokasyonlar",
+    url: "http://localhost:1456/api/getLokasyonlar",
     headers: {
       Authorization: "Basic T1JKSU46",
       "Accept-language": "en,tr,ru",
@@ -82,7 +82,11 @@ function getLokasyonlar() {
       if (response != null && response != "") {
         var objects = response;
         for (var i = 0; i < objects.length; i++) {
-          lokasyonlar.push(objects[i]);
+          if (objects[i].endsWith("\r\n")) {
+            lokasyonlar.push(objects[i].replace(/\r\n/g, ""));
+          } else {
+            lokasyonlar.push(objects[i]);
+          }
         }
       } else {
         toastr.options.positionClass = "toast-bottom-left";
@@ -155,7 +159,7 @@ function addNewUser(
 
     $.ajax({
       type: "post",
-      url: `http://172.16.1.178:45455/api/YeniKullaniciEkle?${queryString}`,
+      url: `http://localhost:1456/api/YeniKullaniciEkle?${queryString}`,
       data: {
         kullaniciAdi: kullaniciAdi,
         kullaniciTel: kullaniciTel,
