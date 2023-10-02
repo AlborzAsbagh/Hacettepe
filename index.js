@@ -50,7 +50,6 @@ $("#talepEden").blur(function (e) {
     $("#lokasyon").val("");
   }
 });
-
 //Fetch The Users Names Start
 
 var usersName = [];

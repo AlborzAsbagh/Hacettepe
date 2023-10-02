@@ -149,28 +149,24 @@ function addNewUser(
     toastr.options.positionClass = "toast-bottom-left";
     toastr.error("Girilen lokasyon geçersiz.");
   } else {
-    var queryString = `kullaniciAdi=${encodeURIComponent(
-      kullaniciAdi
-    )}&kullaniciTel=${encodeURIComponent(
-      kullaniciTel
-    )}&kullaniciLokasyon=${encodeURIComponent(
-      kullaniciLokasyon
-    )}&kullaniciMail=${encodeURIComponent(kullaniciMail)}`;
+    var data = {
+      userModel: {
+        kullaniciIsmi: kullaniciAdi,
+        kullaniciTelefon: kullaniciTel,
+        kullaniciLok: kullaniciLokasyon,
+        kullaniciEmail: kullaniciMail,
+      },
+    };
 
     $.ajax({
       type: "post",
-      url: `http://localhost:1456/api/YeniKullaniciEkle?${queryString}`,
-      data: {
-        kullaniciAdi: kullaniciAdi,
-        kullaniciTel: kullaniciTel,
-        kullaniciLokasyon: kullaniciLokasyon,
-        kullaniciMail: kullaniciMail,
-      },
+      url: `http://localhost:1456/api/YeniKullaniciEkle`,
+      data: JSON.stringify(data),
       headers: {
         Authorization: "Basic T1JKSU46",
         "Accept-language": "en,tr,ru",
       },
-      contentType: "application/x-www-form-urlencoded",
+      contentType: "application/json",
     })
       .done(function (response) {
         if (response.Durum) {
