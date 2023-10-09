@@ -7,6 +7,8 @@ var email = document.getElementById("email");
 var tel = document.getElementById("tel");
 var konu = document.getElementById("konu");
 var aciklama = document.getElementById("aciklama");
+var birimBolum = document.getElementById("birim-bolum");
+var birimBolumYetkilisi = document.getElementById("birim-bolum-yetkilisi");
 
 document.getElementById("lokasyon").readOnly = true;
 lokasyon.addEventListener("click", function (params) {
@@ -101,6 +103,10 @@ $("#ekle").on("click", function () {
   var tel = document.getElementById("tel").value;
   var konu = document.getElementById("konu").value;
   var aciklama = document.getElementById("aciklama").value;
+  var birimBolum = document.getElementById("birim-bolum").value;
+  var birimBolumYetkilisi = document.getElementById(
+    "birim-bolum-yetkilisi"
+  ).value;
   function checkInputs() {
     if (
       talepEden === "" ||
@@ -108,7 +114,9 @@ $("#ekle").on("click", function () {
       email === "" ||
       !validatePhoneNumber(tel) ||
       konu === "" ||
-      aciklama === ""
+      aciklama === "" ||
+      birimBolum === "" ||
+      birimBolumYetkilisi === ""
     )
       return true;
     return false;
@@ -119,6 +127,9 @@ $("#ekle").on("click", function () {
     if (aciklama === "") $("#aciklama").css("border-color", "red");
     if (!validatePhoneNumber(tel)) $("#tel").css("border-color", "red");
     if (email === "") $("#email").css("border-color", "red");
+    if (birimBolum === "") $("#birim-bolum").css("border-color", "red");
+    if (birimBolumYetkilisi === "")
+      $("#birim-bolum-yetkilisi").css("border-color", "red");
 
     toastr.options.positionClass = "toast-bottom-left";
     toastr.error("Girilen bilgiler boş yada geçersiz olabilir.");
@@ -131,7 +142,9 @@ $("#ekle").on("click", function () {
         user.ISK_TELEFON_1,
         user.ISK_MAIL,
         user.TB_IS_TALEBI_KULLANICI_ID,
-        user.ISK_LOKASYON_ID
+        user.ISK_LOKASYON_ID,
+        birimBolum,
+        birimBolumYetkilisi
       );
     } else {
       $(".modal-form input").val("");
@@ -246,7 +259,16 @@ autocomplete(document.getElementById("talepEden"), usersName);
 
 //Is Talebi Ekle Function Start
 
-function postIsTalebi(tanim, konu, telNo, mail, talepEdenId, lokasyonId) {
+function postIsTalebi(
+  tanim,
+  konu,
+  telNo,
+  mail,
+  talepEdenId,
+  lokasyonId,
+  birimBolum,
+  birimBolumYetkilisi
+) {
   $(".preloader").show();
   $.ajax({
     type: "get",
@@ -290,6 +312,8 @@ function postIsTalebi(tanim, konu, telNo, mail, talepEdenId, lokasyonId) {
           mail: mail,
           talepEdenId: talepEdenId,
           lokasyonId: lokasyonId,
+          birimBolum: birimBolum,
+          birimBolumYetkilisi: birimBolumYetkilisi,
         },
         headers: {
           Authorization: "Basic T1JKSU46",
@@ -342,6 +366,12 @@ function checkFields() {
   aciklama === ""
     ? $("#aciklama").css("border-color", "red")
     : $("#aciklama").css("border-color", "lightgray");
+  birimBolum === ""
+    ? $("#birim-bolum").css("border-color", "red")
+    : $("#birim-bolum").css("border-color", "lightgray");
+  birimBolumYetkilisi === ""
+    ? $("#birim-bolum-yetkilisi").css("border-color", "red")
+    : $("#birim-bolum-yetkilisi").css("border-color", "lightgray");
 }
 
 function validatePhoneNumber(tel) {
