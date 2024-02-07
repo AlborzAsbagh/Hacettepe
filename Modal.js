@@ -70,7 +70,7 @@ function autocomplete(inp, arr) {
 function getLokasyonlar() {
   $.ajax({
     type: "GET",
-    url: "http://localhost:1456/api/getLokasyonlar",
+    url: "http://10.20.211.48:1456/api/getLokasyonlar",
     headers: {
       Authorization: "Basic T1JKSU46",
       "Accept-language": "en,tr,ru",
@@ -160,7 +160,7 @@ function addNewUser(
 
     $.ajax({
       type: "post",
-      url: `http://localhost:1456/api/YeniKullaniciEkle`,
+      url: `http://10.20.211.48:1456/api/YeniKullaniciEkle`,
       data: JSON.stringify(data),
       headers: {
         Authorization: "Basic T1JKSU46",

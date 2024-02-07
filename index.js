@@ -59,7 +59,7 @@ var kullaniciListe = [];
 
 $.ajax({
   type: "get",
-  url: "http://localhost:1456/api/talepKullanici",
+  url: "http://10.20.211.48:1456/api/talepKullanici",
   headers: {
     Authorization: "Basic T1JKSU46",
     "Accept-language": "en,tr,ru",
@@ -162,7 +162,7 @@ function getLokasyon(id) {
   var lokasyon = "";
   $.ajax({
     type: "get",
-    url: "http://localhost:1456/api/getLokasyonById",
+    url: "http://10.20.211.48:1456/api/getLokasyonById",
     data: { id: id },
     dataType: "json",
     headers: {
@@ -272,7 +272,7 @@ function postIsTalebi(
   $(".preloader").show();
   $.ajax({
     type: "get",
-    url: "http://localhost:1456/api/getIsTalebiKod",
+    url: "http://10.20.211.48:1456/api/getIsTalebiKod",
     data: { nmrkod: "IST_KOD" },
     headers: {
       Authorization: "Basic T1JKSU46",
@@ -302,7 +302,7 @@ function postIsTalebi(
 
       $.ajax({
         type: "GET",
-        url: "http://localhost:1456/api/postIsTalebi",
+        url: "http://10.20.211.48:1456/api/postIsTalebi",
         data: {
           istKodNumber: numberInt,
           istKod: istKod,
